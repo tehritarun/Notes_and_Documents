@@ -167,3 +167,37 @@ To preserve the commit history and revert changes we use **revert** command as b
 git revert {hash of commit we want to undo}
 git diff {hash_1} {hash_2}          #This shows difference between two commits
 ```
+## GIT STASH
+git shash command is used to temporary save uncommitted changes for later use.
+```bash
+git stash save "message"
+```
+There are 2 ways to get changes back from saved stash
+1. stash ***apply***: this method applies mentioned stash and keeps that stash in list. we need to remove that manually if required.
+```bash
+git stash list      #to get list of saved stash
+git stash apply {stash_name}
+```
+2. stash ***pop***: this method applies recent stash in list and drop it from stash list.
+```bash
+git stash pop
+```
+##### Remove Stash
+To remove stash from list without applying its changes, we use stash **drop** command.
+```bash
+git stash list      #to get list of saved stash
+git stash drop {stash_name}
+```
+To remove all stashes from list stash **clear** command can be used.
+```bash
+git stash clear
+```
+##### Copy changes from master to feature branch
+```bash
+git stash save "feature saved"  #save changes to stash
+git stash list                  #get list of stashes
+git checkout newbranch          #switch to new branch
+git stash pop                   #apply the stash in new branch
+git diff                        #check changes by diff command
+```
+in new branch these changes can be committed as desired
